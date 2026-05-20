@@ -4,7 +4,9 @@ import { useState } from "react";
 
 export default function Home() {
   const [prompt, setPrompt] = useState("");
-  const [imageBase64, setImageBase64] = useState<string | null>(null);
+  
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -28,7 +30,8 @@ export default function Home() {
         throw new Error(data.error || "Fehler bei der Bildgenerierung.");
       }
 
-      setImageBase64(data.imageBase64);
+      // setImageBase64(data.imageBase64);
+      setImageUrl(data.imageUrl);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unbekannter Fehler.");
     } finally {
@@ -68,15 +71,24 @@ export default function Home() {
           </div>
         )}
 
-        {imageBase64 && (
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-4">
-            <img
-              src={`data:image/png;base64,${imageBase64}`}
-              alt="Generiertes Bild"
-              className="w-full rounded-xl"
-            />
-          </div>
-        )}
+        {imageUrl && (
+  <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-4">
+    <img
+      src={imageUrl}
+      alt="Generiertes Bild"
+      className="w-full rounded-xl"
+    />
+
+    <a
+      href={imageUrl}
+      target="_blank"
+      rel="noreferrer"
+      className="mt-3 inline-block text-sm text-zinc-300 underline"
+    >
+      Bild öffnen
+    </a>
+  </div>
+)}
       </div>
     </main>
   );
