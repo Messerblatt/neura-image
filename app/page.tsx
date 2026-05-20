@@ -42,7 +42,7 @@ export default function Home() {
         <div>
           <h1 className="text-3xl font-bold">Mission GCC Image Agent</h1>
           <p className="mt-2 text-zinc-400">
-            Gemini/Imagen-basierter Bild-Agent, deployed über GitHub und Vercel.
+            Gemini/Imagen-basierter Bild-Agent, deployed über GitHub und Vercel .
           </p>
         </div>
 
